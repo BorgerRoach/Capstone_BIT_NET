@@ -1,0 +1,21 @@
+all:
+  vars:
+    # The generated inventory is assumed to be used from the clab host.
+    # Hence no http proxy should be used. Therefore we make sure the http
+    # module does not attempt using any global http proxy.
+    ansible_httpapi_use_proxy: false
+  children:
+    linux:
+      hosts:
+        clab-frr-min-evpn-agg:
+          ansible_host: 172.20.20.6
+        clab-frr-min-evpn-core:
+          ansible_host: 172.20.20.2
+        clab-frr-min-evpn-hostA:
+          ansible_host: 172.20.20.4
+        clab-frr-min-evpn-hostB:
+          ansible_host: 172.20.20.5
+        clab-frr-min-evpn-tor1:
+          ansible_host: 172.20.20.3
+        clab-frr-min-evpn-tor2:
+          ansible_host: 172.20.20.7

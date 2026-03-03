@@ -1,0 +1,31 @@
+---
+agg:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.6
+core:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.2
+hostA:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.4
+hostB:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.5
+tor1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.3
+tor2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.7

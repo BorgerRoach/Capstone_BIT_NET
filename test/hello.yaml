@@ -1,0 +1,25 @@
+name: hello-lab
+
+topology:
+  nodes:
+    core-test:
+      kind: linux
+      image: alpine
+      labels:
+        clab-node-host: vm-c
+
+    agg-test:
+      kind: linux
+      image: alpine
+      labels:
+        clab-node-host: vm-a
+
+    tor-test:
+      kind: linux
+      image: alpine
+      labels:
+        clab-node-host: vm-t
+
+  links:
+    - endpoints: ["core-test:eth1", "agg-test:eth1"]
+    - endpoints: ["agg-test:eth2", "tor-test:eth1"]

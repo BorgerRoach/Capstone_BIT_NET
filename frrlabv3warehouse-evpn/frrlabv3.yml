@@ -1,0 +1,80 @@
+name: warehouse-evpn
+
+topology:
+  defaults:
+    kind: linux
+    binds:
+     - ./daemons:/etc/frr/daemons
+
+
+  nodes:
+    # Management node
+    management:
+      kind: linux
+      image: management-node:latest
+      binds:
+        - ./mgmt_id_ed25519:/root/.ssh/id_ed25519:ro
+
+    # Core router
+    core:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/core.conf:/etc/frr/frr.conf
+
+    # Aggregation routers
+    agg1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg1.conf:/etc/frr/frr.conf
+
+    agg2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg2.conf:/etc/frr/frr.conf
+
+    # ToRs with SSH enabled
+    tor1:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor1.conf:/etc/frr/frr.conf
+
+    tor2:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor2.conf:/etc/frr/frr.conf
+
+    tor3:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor3.conf:/etc/frr/frr.conf
+
+    tor4:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor4.conf:/etc/frr/frr.conf
+
+  links:
+    # Core to Agg
+    - endpoints: ["core:eth1", "agg1:eth1"]
+    - endpoints: ["core:eth2", "agg2:eth1"]
+
+    # Agg1 to ToRs
+    - endpoints: ["agg1:eth2", "tor1:eth1"]
+    - endpoints: ["agg1:eth3", "tor2:eth1"]
+
+    # Agg2 to ToRs
+    - endpoints: ["agg2:eth2", "tor3:eth1"]
+    - endpoints: ["agg2:eth3", "tor4:eth1"]
+
+    # Management node connections to ToRs
+    - endpoints: ["management:eth1", "tor1:eth2"]
+    - endpoints: ["management:eth2", "tor2:eth2"]
+    - endpoints: ["management:eth3", "tor3:eth2"]
+    - endpoints: ["management:eth4", "tor4:eth2"]

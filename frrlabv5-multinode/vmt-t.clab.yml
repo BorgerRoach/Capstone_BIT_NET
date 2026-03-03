@@ -1,0 +1,21 @@
+name: vm-t-lab
+
+topology:
+  nodes:
+    core-t:
+      kind: linux
+      image: frrouting/frr
+    agg-t:
+      kind: linux
+      image: frrouting/frr
+    tor-t:
+      kind: linux
+      image: frrouting/frr
+    host-t1:
+      kind: linux
+      image: alpine
+
+  links:
+    - endpoints: ["core-t:eth1", "agg-t:eth1"]
+    - endpoints: ["agg-t:eth2", "tor-t:eth1"]
+    - endpoints: ["tor-t:eth2", "host-t1:eth1"]

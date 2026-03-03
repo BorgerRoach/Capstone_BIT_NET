@@ -1,0 +1,44 @@
+# management-node Dockerfile
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required packages + python
+RUN apt-get update && \
+    apt-get install -y \
+        iproute2 \
+        iputils-ping \
+        openssh-client \
+        sshpass \
+        curl \
+        vim \
+        sudo \
+        python3 \
+        python3-pip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependency for controller
+RUN pip3 install requests
+
+# Prepare SSH for passwordless login
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+COPY mgmt_id_ed25519 /root/.ssh/id_ed25519
+RUN chmod 600 /root/.ssh/id_ed25519
+RUN touch /root/.ssh/known_hosts && chmod 644 /root/.ssh/known_hosts
+
+# Set working directory
+WORKDIR /home/mgmt
+
+# Copy mobility scripts
+COPY ./mobility-scripts /home/mgmt/scripts
+RUN chmod +x /home/mgmt/scripts/mobility-loop.sh
+RUN chmod +x /home/mgmt/scripts/mobility-storm.sh
+
+# Copy controller script
+COPY ./scripts/controller.py /home/mgmt/controller.py
+
+# Expose controller port
+EXPOSE 5000
+
+# Start controller automatically in background, then open bash
+CMD ["/bin/bash", "-c", "python3 /home/mgmt/controller.py & exec /bin/bash"]

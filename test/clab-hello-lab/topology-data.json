@@ -1,0 +1,151 @@
+{
+  "name": "hello-lab",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-e5e850c72821",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsEMLlKumoiDHMEOVTspnFrNviKMpnbq8fwol8LIlG6"],
+  "nodes": {
+    "agg-test": {
+      "index": "0",
+      "shortname": "agg-test",
+      "longname": "clab-hello-lab-agg-test",
+      "fqdn": "agg-test.hello-lab.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/agg-test",
+      "kind": "linux",
+      "image": "alpine",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.36",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::24",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-e5e850c72821",
+        "clab-node-group": "",
+        "clab-node-host": "vm-a",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/agg-test",
+        "clab-node-longname": "clab-hello-lab-agg-test",
+        "clab-node-name": "agg-test",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/hello.yaml",
+        "containerlab": "hello-lab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "core-test": {
+      "index": "1",
+      "shortname": "core-test",
+      "longname": "clab-hello-lab-core-test",
+      "fqdn": "core-test.hello-lab.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/core-test",
+      "kind": "linux",
+      "image": "alpine",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.37",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::25",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-e5e850c72821",
+        "clab-node-group": "",
+        "clab-node-host": "vm-c",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/core-test",
+        "clab-node-longname": "clab-hello-lab-core-test",
+        "clab-node-name": "core-test",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/hello.yaml",
+        "containerlab": "hello-lab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor-test": {
+      "index": "2",
+      "shortname": "tor-test",
+      "longname": "clab-hello-lab-tor-test",
+      "fqdn": "tor-test.hello-lab.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/tor-test",
+      "kind": "linux",
+      "image": "alpine",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.38",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::26",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-e5e850c72821",
+        "clab-node-group": "",
+        "clab-node-host": "vm-t",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/clab-hello-lab/tor-test",
+        "clab-node-longname": "clab-hello-lab-tor-test",
+        "clab-node-name": "tor-test",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/test/hello.yaml",
+        "containerlab": "hello-lab"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "core-test",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:39:54:5d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "agg-test",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:49:e0:f7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "agg-test",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:47:7c:30",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor-test",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:c0:81:e6",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}

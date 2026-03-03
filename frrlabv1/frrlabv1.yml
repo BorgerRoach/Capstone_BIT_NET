@@ -1,0 +1,161 @@
+name: frrlabv1
+
+topology:
+  nodes:
+    spine1:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: spine1/spine1frr.conf
+      binds:
+        - spine1/daemons:/etc/frr/daemons
+        - spine1/spine1frr.conf:/etc/frr/frr.conf
+    spine2:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: spine2/spine2frr.conf
+      binds:
+        - spine2/daemons:/etc/frr/daemons
+        - spine2/spine2frr.conf:/etc/frr/frr.conf
+          
+    leaf1:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: leaf1/leaf1frr.conf
+      binds:
+        - leaf1/daemons:/etc/frr/daemons
+        - leaf1/leaf1frr.conf:/etc/frr/frr.conf
+      exec: 
+        - ip link add br10 type bridge
+        - ip link set br10 up
+        
+# Create the VXLAN interface with correct VNI and local VTEP IP
+        - ip link add vxlan10 type vxlan id 10 local 10.255.1.1 dstport 4789 nolearning
+
+# Enslave the VXLAN interface to the bridge
+        - ip link set vxlan10 master br10
+
+# Set bridge_slave flags for EVPN
+        - ip link set vxlan10 type bridge_slave neigh_suppress on learning off
+
+# Bring up the VXLAN interface
+        - ip link set vxlan10 up
+
+        - ip link set eth3 master br10
+        - ip link set eth3 up
+   
+          
+    leaf2:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: leaf2/leaf2frr.conf
+      binds:
+        - leaf2/daemons:/etc/frr/daemons
+        - leaf2/leaf2frr.conf:/etc/frr/frr.conf
+      exec: 
+        - ip link add br10 type bridge
+        - ip link set br10 up
+        # Create the VXLAN interface with correct VNI and local VTEP IP
+        - ip link add vxlan10 type vxlan id 10 local 10.255.1.2 dstport 4789 nolearning
+
+# Enslave the VXLAN interface to the bridge
+        - ip link set vxlan10 master br10
+
+# Set bridge_slave flags for EVPN
+        - ip link set vxlan10 type bridge_slave neigh_suppress on learning off
+
+# Bring up the VXLAN interface
+        - ip link set vxlan10 up
+        - ip link set eth3 master br10
+        - ip link set eth3 up
+ 
+    leaf3:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: leaf3/leaf3frr.conf
+      binds:
+        - leaf3/daemons:/etc/frr/daemons
+        - leaf3/leaf3frr.conf:/etc/frr/frr.conf
+      exec: 
+        - ip link add br10 type bridge
+        - ip link set br10 up
+        # Create the VXLAN interface with correct VNI and local VTEP IP
+        - ip link add vxlan10 type vxlan id 10 local 10.255.1.3 dstport 4789 nolearning
+
+# Enslave the VXLAN interface to the bridge
+        - ip link set vxlan10 master br10
+
+# Set bridge_slave flags for EVPN
+        - ip link set vxlan10 type bridge_slave neigh_suppress on learning off
+
+# Bring up the VXLAN interface
+        - ip link set vxlan10 up
+        - ip link set eth3 master br10
+        - ip link set eth3 up
+        
+         
+    leaf4:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      startup-config: leaf4/leaf4frr.conf
+      binds:
+        - leaf4/daemons:/etc/frr/daemons
+        - leaf4/leaf4frr.conf:/etc/frr/frr.conf
+      exec: 
+        - ip link add br10 type bridge
+        - ip link set br10 up
+        # Create the VXLAN interface with correct VNI and local VTEP IP
+        - ip link add vxlan10 type vxlan id 10 local 10.255.1.4 dstport 4789 nolearning
+
+# Enslave the VXLAN interface to the bridge
+        - ip link set vxlan10 master br10
+
+# Set bridge_slave flags for EVPN
+        - ip link set vxlan10 type bridge_slave neigh_suppress on learning off
+
+# Bring up the VXLAN interface
+        - ip link set vxlan10 up
+        - ip link set eth3 master br10
+        - ip link set eth3 up
+              
+    host1:
+      kind: linux
+      image: praqma/network-multitool
+      exec:
+        - ip addr add 192.168.10.11/24 dev eth1
+        - ip route add default via 192.168.10.1
+
+    host2:
+      kind: linux
+      image: praqma/network-multitool
+      exec:
+        - ip addr add 192.168.10.12/24 dev eth1
+        - ip route add default via 192.168.10.2
+
+    host3:
+      kind: linux
+      image: praqma/network-multitool
+      exec:
+        - ip addr add 192.168.10.13/24 dev eth1
+        - ip route add default via 192.168.10.3
+    host4:
+      kind: linux
+      image: praqma/network-multitool
+      exec:
+        - ip addr add 192.168.10.14/24 dev eth1
+        - ip route add default via 192.168.10.4
+
+   
+  links:
+    - endpoints: ["spine1:eth5", "spine2:eth5"]
+    - endpoints: ["spine1:eth1", "leaf1:eth1"]
+    - endpoints: ["spine2:eth1", "leaf1:eth2"]
+    - endpoints: ["host1:eth1", "leaf1:eth3"]
+    - endpoints: ["spine1:eth2", "leaf2:eth1"]
+    - endpoints: ["spine2:eth2", "leaf2:eth2"]
+    - endpoints: ["host2:eth1", "leaf2:eth3"]
+    - endpoints: ["spine1:eth3", "leaf3:eth1"]
+    - endpoints: ["spine2:eth3", "leaf3:eth2"]
+    - endpoints: ["host3:eth1", "leaf3:eth3"]
+    - endpoints: ["spine1:eth4", "leaf4:eth1"]
+    - endpoints: ["spine2:eth4", "leaf4:eth2"]
+    - endpoints: ["host4:eth1", "leaf4:eth3"]

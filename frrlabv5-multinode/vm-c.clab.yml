@@ -1,0 +1,21 @@
+name: vm-c-lab
+
+topology:
+  nodes:
+    core-c:
+      kind: linux
+      image: frrouting/frr
+    agg-c:
+      kind: linux
+      image: frrouting/frr
+    tor-c:
+      kind: linux
+      image: frrouting/frr
+    host-c1:
+      kind: linux
+      image: alpine
+
+  links:
+    - endpoints: ["core-c:eth1", "agg-c:eth1"]
+    - endpoints: ["agg-c:eth2", "tor-c:eth1"]
+    - endpoints: ["tor-c:eth2", "host-c1:eth1"]

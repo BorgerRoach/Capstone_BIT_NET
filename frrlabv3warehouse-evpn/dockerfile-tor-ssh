@@ -1,0 +1,37 @@
+FROM frrouting/frr:latest
+
+# Install OpenSSH + Python + pip
+RUN apk update && \
+    apk add --no-cache \
+        openssh \
+        openssh-server \
+        python3 \
+        py3-pip && \
+    mkdir -p /var/run/sshd /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    ssh-keygen -A && \
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    touch /root/.ssh/known_hosts && chmod 644 /root/.ssh/known_hosts
+
+# Install Python dependency
+RUN pip3 install requests
+
+# Add management public key
+COPY mgmt_id_ed25519.pub /root/.ssh/authorized_keys
+RUN chmod 600 /root/.ssh/authorized_keys
+
+# Copy ToR agent into container
+COPY ./scripts/tor-agent.py /opt/tor-agent.py
+
+# Expose SSH port
+EXPOSE 22
+
+# Start FRR + Agent + SSHD
+CMD ["/bin/sh", "-c", "\
+    /usr/lib/frr/frrinit.sh start && \
+    echo 'FRR started' && \
+    python3 /opt/tor-agent.py & \
+    echo 'Agent started' && \
+    exec /usr/sbin/sshd -D \
+"]

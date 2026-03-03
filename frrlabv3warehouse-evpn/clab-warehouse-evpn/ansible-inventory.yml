@@ -1,0 +1,25 @@
+all:
+  vars:
+    # The generated inventory is assumed to be used from the clab host.
+    # Hence no http proxy should be used. Therefore we make sure the http
+    # module does not attempt using any global http proxy.
+    ansible_httpapi_use_proxy: false
+  children:
+    linux:
+      hosts:
+        clab-warehouse-evpn-agg1:
+          ansible_host: 172.20.20.4
+        clab-warehouse-evpn-agg2:
+          ansible_host: 172.20.20.9
+        clab-warehouse-evpn-core:
+          ansible_host: 172.20.20.8
+        clab-warehouse-evpn-management:
+          ansible_host: 172.20.20.7
+        clab-warehouse-evpn-tor1:
+          ansible_host: 172.20.20.6
+        clab-warehouse-evpn-tor2:
+          ansible_host: 172.20.20.3
+        clab-warehouse-evpn-tor3:
+          ansible_host: 172.20.20.5
+        clab-warehouse-evpn-tor4:
+          ansible_host: 172.20.20.2

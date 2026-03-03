@@ -1,0 +1,337 @@
+{
+  "name": "frr-min-evpn",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-fcc980a0da6e",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDD1p7zcpZmu+Rlhq8aFkikZ4jP5Z4wEzWjkzF5b+3O"],
+  "nodes": {
+    "agg": {
+      "index": "0",
+      "shortname": "agg",
+      "longname": "clab-frr-min-evpn-agg",
+      "fqdn": "agg.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/agg",
+      "kind": "linux",
+      "image": "frrouting/frr:v7.5.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/agg",
+        "clab-node-longname": "clab-frr-min-evpn-agg",
+        "clab-node-name": "agg",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+      ]
+    },
+    "core": {
+      "index": "1",
+      "shortname": "core",
+      "longname": "clab-frr-min-evpn-core",
+      "fqdn": "core.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/core",
+      "kind": "linux",
+      "image": "frrouting/frr:v7.5.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/core",
+        "clab-node-longname": "clab-frr-min-evpn-core",
+        "clab-node-name": "core",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+      ]
+    },
+    "hostA": {
+      "index": "2",
+      "shortname": "hostA",
+      "longname": "clab-frr-min-evpn-hostA",
+      "fqdn": "hostA.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/hostA",
+      "kind": "linux",
+      "image": "praqma/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/hostA",
+        "clab-node-longname": "clab-frr-min-evpn-hostA",
+        "clab-node-name": "hostA",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "hostB": {
+      "index": "3",
+      "shortname": "hostB",
+      "longname": "clab-frr-min-evpn-hostB",
+      "fqdn": "hostB.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/hostB",
+      "kind": "linux",
+      "image": "praqma/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/hostB",
+        "clab-node-longname": "clab-frr-min-evpn-hostB",
+        "clab-node-name": "hostB",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "tor1": {
+      "index": "4",
+      "shortname": "tor1",
+      "longname": "clab-frr-min-evpn-tor1",
+      "fqdn": "tor1.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/tor1",
+      "kind": "linux",
+      "image": "frrouting/frr:v7.5.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/tor1",
+        "clab-node-longname": "clab-frr-min-evpn-tor1",
+        "clab-node-name": "tor1",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor2": {
+      "index": "5",
+      "shortname": "tor2",
+      "longname": "clab-frr-min-evpn-tor2",
+      "fqdn": "tor2.frr-min-evpn.io",
+      "group": "",
+      "labdir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/tor2",
+      "kind": "linux",
+      "image": "frrouting/frr:v7.5.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.7",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::7",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-fcc980a0da6e",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/clab-frr-min-evpn/tor2",
+        "clab-node-longname": "clab-frr-min-evpn-tor2",
+        "clab-node-name": "tor2",
+        "clab-node-type": "",
+        "clab-owner": "vboxuser",
+        "clab-topo-file": "/home/vboxuser/CapstoneProj/Capstone_BIT_NET/frrlabv2/frrlabv2.yml",
+        "containerlab": "frr-min-evpn"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "core",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:3b:01:46",
+          "peer": "z"
+        },
+        "z": {
+          "node": "agg",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:f5:10:69",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "agg",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:b8:96:d4",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:40:54:f2",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "agg",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:9c:a8:58",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:81:29:a3",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "tor1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:d7:ea:0b",
+          "peer": "z"
+        },
+        "z": {
+          "node": "hostA",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:5d:17:35",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "tor2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:bb:da:e3",
+          "peer": "z"
+        },
+        "z": {
+          "node": "hostB",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:4c:be:a2",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}

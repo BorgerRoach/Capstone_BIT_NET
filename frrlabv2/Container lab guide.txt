@@ -1,0 +1,23 @@
+Container lab:
+
+Through vscode: 
+
+Download the container lab setup: (sudo) curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"
+
+To use the docker service: sudo docker login: You are given a one-time code. input it on the website and sign in using your account
+Start the docker service: sudo systemctl start docker
+
+Start the topology containers:  sudo clab deploy --topo frrlab.yml (should create a folder called clab-frrlab)
+
+To enter the separate containers: docker exec -it container_name /bin/bash
+
+
+Helpful commands:
+
+To view container names again: docker ps
+
+
+
+
+
+

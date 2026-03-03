@@ -1,0 +1,323 @@
+name: warehouse-evpn
+
+topology:
+  defaults:
+    kind: linux
+    binds:
+      - ./daemons:/etc/frr/daemons
+
+  nodes:
+    # Management node
+    management:
+      kind: linux
+      image: management-node:latest
+      binds:
+        - ./mgmt_id_ed25519:/root/.ssh/id_ed25519:ro
+
+    # Core routers
+    core1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/core1.conf:/etc/frr/frr.conf
+
+    core2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/core2.conf:/etc/frr/frr.conf
+
+    core3:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/core3.conf:/etc/frr/frr.conf
+
+    core4:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/core4.conf:/etc/frr/frr.conf
+
+    # Aggregation routers
+    agg1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg1.conf:/etc/frr/frr.conf
+    agg2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg2.conf:/etc/frr/frr.conf
+    agg3:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg3.conf:/etc/frr/frr.conf
+    agg4:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg4.conf:/etc/frr/frr.conf
+    agg5:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg5.conf:/etc/frr/frr.conf
+    agg6:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg6.conf:/etc/frr/frr.conf
+    agg7:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg7.conf:/etc/frr/frr.conf
+    agg8:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - ./configs/agg8.conf:/etc/frr/frr.conf
+
+    # ToRs with SSH enabled
+    tor1:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor1.conf:/etc/frr/frr.conf
+    tor2:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor2.conf:/etc/frr/frr.conf
+    tor3:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor3.conf:/etc/frr/frr.conf
+    tor4:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor4.conf:/etc/frr/frr.conf
+    tor5:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor5.conf:/etc/frr/frr.conf
+    tor6:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor6.conf:/etc/frr/frr.conf
+    tor7:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor7.conf:/etc/frr/frr.conf
+    tor8:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor8.conf:/etc/frr/frr.conf
+    tor9:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor9.conf:/etc/frr/frr.conf
+    tor10:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor10.conf:/etc/frr/frr.conf
+    tor11:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor11.conf:/etc/frr/frr.conf
+    tor12:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor12.conf:/etc/frr/frr.conf
+    tor13:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor13.conf:/etc/frr/frr.conf
+    tor14:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor14.conf:/etc/frr/frr.conf
+    tor15:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor15.conf:/etc/frr/frr.conf
+    tor16:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor16.conf:/etc/frr/frr.conf
+    tor17:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor17.conf:/etc/frr/frr.conf
+    tor18:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor18.conf:/etc/frr/frr.conf
+    tor19:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor19.conf:/etc/frr/frr.conf
+    tor20:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor20.conf:/etc/frr/frr.conf
+    tor21:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor21.conf:/etc/frr/frr.conf
+    tor22:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor22.conf:/etc/frr/frr.conf
+    tor23:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor23.conf:/etc/frr/frr.conf
+    tor24:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor24.conf:/etc/frr/frr.conf
+    tor25:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor25.conf:/etc/frr/frr.conf
+    tor26:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor26.conf:/etc/frr/frr.conf
+    tor27:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor27.conf:/etc/frr/frr.conf
+    tor28:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor28.conf:/etc/frr/frr.conf
+    tor29:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor29.conf:/etc/frr/frr.conf
+    tor30:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor30.conf:/etc/frr/frr.conf
+    tor31:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor31.conf:/etc/frr/frr.conf
+    tor32:
+      kind: linux
+      image: frr-ssh:latest
+      binds:
+        - ./configs/tor32.conf:/etc/frr/frr.conf
+
+  links:
+    # Core to Agg
+    - endpoints: ["core1:eth1", "agg1:eth1"]
+    - endpoints: ["core1:eth2", "agg2:eth1"]
+    - endpoints: ["core2:eth1", "agg3:eth1"]
+    - endpoints: ["core2:eth2", "agg4:eth1"]
+    - endpoints: ["core3:eth1", "agg5:eth1"]
+    - endpoints: ["core3:eth2", "agg6:eth1"]
+    - endpoints: ["core4:eth1", "agg7:eth1"]
+    - endpoints: ["core4:eth2", "agg8:eth1"]
+
+    # AGG to ToRs
+    - endpoints: ["agg1:eth2", "tor1:eth1"]
+    - endpoints: ["agg1:eth3", "tor2:eth1"]
+    - endpoints: ["agg1:eth4", "tor3:eth1"]
+    - endpoints: ["agg1:eth5", "tor4:eth1"]
+    - endpoints: ["agg2:eth2", "tor5:eth1"]
+    - endpoints: ["agg2:eth3", "tor6:eth1"]
+    - endpoints: ["agg2:eth4", "tor7:eth1"]
+    - endpoints: ["agg2:eth5", "tor8:eth1"]
+    - endpoints: ["agg3:eth2", "tor9:eth1"]
+    - endpoints: ["agg3:eth3", "tor10:eth1"]
+    - endpoints: ["agg3:eth4", "tor11:eth1"]
+    - endpoints: ["agg3:eth5", "tor12:eth1"]
+    - endpoints: ["agg4:eth2", "tor13:eth1"]
+    - endpoints: ["agg4:eth3", "tor14:eth1"]
+    - endpoints: ["agg4:eth4", "tor15:eth1"]
+    - endpoints: ["agg4:eth5", "tor16:eth1"]
+    - endpoints: ["agg5:eth2", "tor17:eth1"]
+    - endpoints: ["agg5:eth3", "tor18:eth1"]
+    - endpoints: ["agg5:eth4", "tor19:eth1"]
+    - endpoints: ["agg5:eth5", "tor20:eth1"]
+    - endpoints: ["agg6:eth2", "tor21:eth1"]
+    - endpoints: ["agg6:eth3", "tor22:eth1"]
+    - endpoints: ["agg6:eth4", "tor23:eth1"]
+    - endpoints: ["agg6:eth5", "tor24:eth1"]
+    - endpoints: ["agg7:eth2", "tor25:eth1"]
+    - endpoints: ["agg7:eth3", "tor26:eth1"]
+    - endpoints: ["agg7:eth4", "tor27:eth1"]
+    - endpoints: ["agg7:eth5", "tor28:eth1"]
+    - endpoints: ["agg8:eth2", "tor29:eth1"]
+    - endpoints: ["agg8:eth3", "tor30:eth1"]
+    - endpoints: ["agg8:eth4", "tor31:eth1"]
+    - endpoints: ["agg8:eth5", "tor32:eth1"]
+
+    # Management node connections to ToRs
+    - endpoints: ["management:eth1", "tor1:eth2"]
+    - endpoints: ["management:eth2", "tor2:eth2"]
+    - endpoints: ["management:eth3", "tor3:eth2"]
+    - endpoints: ["management:eth4", "tor4:eth2"]
+    - endpoints: ["management:eth5", "tor5:eth2"]
+    - endpoints: ["management:eth6", "tor6:eth2"]
+    - endpoints: ["management:eth7", "tor7:eth2"]
+    - endpoints: ["management:eth8", "tor8:eth2"]
+    - endpoints: ["management:eth9", "tor9:eth2"]
+    - endpoints: ["management:eth10", "tor10:eth2"]
+    - endpoints: ["management:eth11", "tor11:eth2"]
+    - endpoints: ["management:eth12", "tor12:eth2"]
+    - endpoints: ["management:eth13", "tor13:eth2"]
+    - endpoints: ["management:eth14", "tor14:eth2"]
+    - endpoints: ["management:eth15", "tor15:eth2"]
+    - endpoints: ["management:eth16", "tor16:eth2"]
+    - endpoints: ["management:eth17", "tor17:eth2"]
+    - endpoints: ["management:eth18", "tor18:eth2"]
+    - endpoints: ["management:eth19", "tor19:eth2"]
+    - endpoints: ["management:eth20", "tor20:eth2"]
+    - endpoints: ["management:eth21", "tor21:eth2"]
+    - endpoints: ["management:eth22", "tor22:eth2"]
+    - endpoints: ["management:eth23", "tor23:eth2"]
+    - endpoints: ["management:eth24", "tor24:eth2"]
+    - endpoints: ["management:eth25", "tor25:eth2"]
+    - endpoints: ["management:eth26", "tor26:eth2"]
+    - endpoints: ["management:eth27", "tor27:eth2"]
+    - endpoints: ["management:eth28", "tor28:eth2"]
+    - endpoints: ["management:eth29", "tor29:eth2"]
+    - endpoints: ["management:eth30", "tor30:eth2"]
+    - endpoints: ["management:eth31", "tor31:eth2"]
+    - endpoints: ["management:eth32", "tor32:eth2"]
