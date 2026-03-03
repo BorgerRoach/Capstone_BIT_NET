@@ -1,16 +1,32 @@
-name: vm-t-lab
+name: vm-T-lab
+
+mgmt:
+  network: clab-t-net
+  ipv4-subnet: 172.30.0.0/24
 
 topology:
   nodes:
     core-t:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/core-t/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-t/daemons:/etc/frr/daemons
+
     agg-t:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/agg-t/agg1.conf:/etc/frr/frr.conf
+        - ./frr/agg-t/daemons:/etc/frr/daemons
+
     tor-t:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor1.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
     host-t1:
       kind: linux
       image: alpine

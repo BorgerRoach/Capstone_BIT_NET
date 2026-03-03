@@ -1,20 +1,35 @@
-name: vm-a-lab
+name: vm-A-lab
+
+mgmt:
+  network: clab-a-net
+  ipv4-subnet: 172.32.0.0/24
 
 topology:
   nodes:
     core-a:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/core-a/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-a/daemons:/etc/frr/daemons
+
     agg-a:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/agg-a/agg1.conf:/etc/frr/frr.conf
+        - ./frr/agg-a/daemons:/etc/frr/daemons
+
     tor-a:
       kind: linux
-      image: alpine
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-a/tor1.conf:/etc/frr/frr.conf
+        - ./frr/tor-a/daemons:/etc/frr/daemons
+
     host-a1:
       kind: linux
       image: alpine
-
 
   links:
     - endpoints: ["core-a:eth1", "agg-a:eth1"]

@@ -1,16 +1,32 @@
-name: vm-c-lab
+name: vm-C-lab
+
+mgmt:
+  network: clab-c-net
+  ipv4-subnet: 172.31.0.0/24
 
 topology:
   nodes:
     core-c:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/core-c/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-c/daemons:/etc/frr/daemons
+
     agg-c:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/agg-c/agg1.conf:/etc/frr/frr.conf
+        - ./frr/agg-c/daemons:/etc/frr/daemons
+
     tor-c:
       kind: linux
       image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor1.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+
     host-c1:
       kind: linux
       image: alpine
