@@ -7,11 +7,11 @@ echo "Detected host IP: $HOST_IP"
 
 # Map VM role
 if [[ "$HOST_IP" == "192.168.56.40" ]]; then
-    VM="T"
+    VM="t"
 elif [[ "$HOST_IP" == "192.168.56.20" ]]; then
-    VM="C"
+    VM="c"
 elif [[ "$HOST_IP" == "192.168.56.30" ]]; then
-    VM="A"
+    VM="a"
 else
     echo "Unknown VM IP. Exiting."
     exit 1
