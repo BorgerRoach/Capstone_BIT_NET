@@ -11,6 +11,10 @@ topology:
     tor-a:
       kind: linux
       image: alpine
+    host-a1:
+      kind: linux
+      image: alpine
+
 
   links:
     - endpoints: ["core-a:eth1", "agg-a:eth1"]
