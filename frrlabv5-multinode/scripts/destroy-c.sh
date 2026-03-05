@@ -28,4 +28,4 @@ sudo ip link show type bridge | grep br- | awk -F: '{print $2}' | xargs -r -I{} 
 echo "Killing stale containerlab processes..."
 sudo pkill -f containerlab
 
-echo "VM-C lab fully cleaned."
+echo "VM-c lab fully cleaned."

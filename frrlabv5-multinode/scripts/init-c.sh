@@ -5,7 +5,7 @@ sudo ip link del vxlan-ca 2>/dev/null
 
 sudo containerlab deploy -t ./vm-c.clab.yml || true
 
-CONTAINER="clab-vm-C-lab-core-c"
+CONTAINER="clab-vm-c-lab-core-c"
 PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER)
 
 echo "Core PID: $PID"

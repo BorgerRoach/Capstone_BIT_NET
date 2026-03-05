@@ -12,10 +12,10 @@ echo "Removing containerlab state directory..."
 sudo rm -rf /var/lib/containerlab/$LAB_NAME
 
 echo "Removing docker containers..."
-docker ps -a --format '{{.Names}}' | grep vm-c | xargs -r docker rm -f
+docker ps -a --format '{{.Names}}' | grep vm-a | xargs -r docker rm -f
 
 echo "Removing docker networks..."
-docker network ls --format '{{.Name}}' | grep vm-c | xargs -r docker network rm
+docker network ls --format '{{.Name}}' | grep vm-a | xargs -r docker network rm
 
 echo "Removing VXLAN interfaces..."
 for vx in vxlan-ct vxlan-ca vxlan-ac vxlan-at vxlan-tc vxlan-ta; do
@@ -28,4 +28,4 @@ sudo ip link show type bridge | grep br- | awk -F: '{print $2}' | xargs -r -I{} 
 echo "Killing stale containerlab processes..."
 sudo pkill -f containerlab
 
-echo "VM-C lab fully cleaned."
+echo "VM-a lab fully cleaned."
