@@ -11,7 +11,7 @@ sudo containerlab deploy -t ./vm-a.clab.yml || true
 CONTAINER="clab-vm-a-lab-core-a"
 PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER)
 
-echo "Core PID: $PID"
+echo "Core-A PID: $PID"
 
 # A → C (VM-C = 192.168.56.20)
 sudo ip link add vxlan-ac type vxlan id 1002 dev enp0s8 remote 192.168.56.20 dstport 4789
@@ -38,5 +38,5 @@ sudo nsenter -t $PID -n ip addr add 10.0.2.0/31 dev vxlan-ac
 # A → T
 sudo nsenter -t $PID -n ip addr add 10.0.3.0/31 dev vxlan-at
 
-# Loopback
-sudo nsenter -t $PID -n ip addr add 10.255.0.3/32 dev lo
+# Loopback (must match FRR core-a)
+sudo nsenter -t $PID -n ip addr add 10.255.0.1/32 dev lo

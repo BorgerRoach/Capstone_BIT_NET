@@ -8,7 +8,7 @@ sudo containerlab deploy -t ./vm-t.clab.yml || true
 CONTAINER="clab-vm-t-lab-core-t"
 PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER)
 
-echo "Core PID: $PID"
+echo "Core-T PID: $PID"
 
 # T → C (VM-C = 192.168.56.20)
 sudo ip link add vxlan-tc type vxlan id 1001 dev enp0s8 remote 192.168.56.20 dstport 4789
@@ -25,10 +25,11 @@ sudo ip link set vxlan-ta netns $PID
 sudo nsenter -t $PID -n ip link set vxlan-tc up
 sudo nsenter -t $PID -n ip link set vxlan-ta up
 
-# T → C
+# T → C  (matches C: 10.0.1.1/31)
 sudo nsenter -t $PID -n ip addr add 10.0.1.0/31 dev vxlan-tc
 
-# T → A
+# T → A  (matches A: 10.0.3.0/31)
 sudo nsenter -t $PID -n ip addr add 10.0.3.1/31 dev vxlan-ta
 
-sudo nsenter -t $PID -n ip addr add 10.255.0.1/32 dev lo
+# Loopback (must match FRR core-t)
+sudo nsenter -t $PID -n ip addr add 10.255.0.41/32 dev lo
