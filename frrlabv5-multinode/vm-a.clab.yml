@@ -6,7 +6,7 @@ topology:
       kind: linux
       image: frrouting/frr
       binds:
-        - ./frr/core-a/core1.frr:/etc/frr/frr.conf
+        - ./frr/core-a/core1.conf:/etc/frr/frr.conf
         - ./frr/core-a/daemons:/etc/frr/daemons
 
     agg-a1:
