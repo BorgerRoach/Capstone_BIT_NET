@@ -1,5 +1,5 @@
 #!/bin/bash
-.
+
 # Destroy old VxLANs
 sudo ip link del vxlan-tc 2>/dev/null
 sudo ip link del vxlan-ta 2>/dev/null
