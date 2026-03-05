@@ -1,8 +1,4 @@
-name: vm-T-lab
-
-mgmt:
-  network: clab-t-net
-  ipv4-subnet: 172.30.0.0/24
+name: vm-t-lab
 
 topology:
   nodes:
@@ -10,28 +6,182 @@ topology:
       kind: linux
       image: frrouting/frr
       binds:
-        - ./frr/core-t/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-t/core1.frr:/etc/frr/frr.conf
         - ./frr/core-t/daemons:/etc/frr/daemons
 
-    agg-t:
+    agg-t1:
       kind: linux
       image: frrouting/frr
       binds:
         - ./frr/agg-t/agg1.conf:/etc/frr/frr.conf
         - ./frr/agg-t/daemons:/etc/frr/daemons
 
-    tor-t:
+    agg-t2:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/agg-t/agg2.conf:/etc/frr/frr.conf
+        - ./frr/agg-t/daemons:/etc/frr/daemons
+
+    agg-t3:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/agg-t/agg3.conf:/etc/frr/frr.conf
+        - ./frr/agg-t/daemons:/etc/frr/daemons
+
+    # -----------------------
+    # TOR T1–T18
+    # -----------------------
+
+    tor-t1:
       kind: linux
       image: frrouting/frr
       binds:
         - ./frr/tor-t/tor1.conf:/etc/frr/frr.conf
         - ./frr/tor-t/daemons:/etc/frr/daemons
 
-    host-t1:
+    tor-t2:
       kind: linux
-      image: alpine
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor2.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t3:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor3.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t4:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor4.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t5:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor5.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t6:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor6.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t7:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor7.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t8:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor8.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t9:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor9.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t10:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor10.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t11:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor11.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t12:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor12.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t13:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor13.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t14:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor14.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t15:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor15.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t16:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor16.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t17:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor17.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
+
+    tor-t18:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-t/tor18.conf:/etc/frr/frr.conf
+        - ./frr/tor-t/daemons:/etc/frr/daemons
 
   links:
-    - endpoints: ["core-t:eth1", "agg-t:eth1"]
-    - endpoints: ["agg-t:eth2", "tor-t:eth1"]
-    - endpoints: ["tor-t:eth2", "host-t1:eth1"]
+    - endpoints: ["core-t:eth1", "agg-t1:eth1"]
+    - endpoints: ["core-t:eth2", "agg-t2:eth1"]
+    - endpoints: ["core-t:eth3", "agg-t3:eth1"]
+
+    - endpoints: ["agg-t1:eth2", "tor-t1:eth1"]
+    - endpoints: ["agg-t1:eth3", "tor-t2:eth1"]
+    - endpoints: ["agg-t1:eth4", "tor-t3:eth1"]
+    - endpoints: ["agg-t1:eth5", "tor-t4:eth1"]
+    - endpoints: ["agg-t1:eth6", "tor-t5:eth1"]
+    - endpoints: ["agg-t1:eth7", "tor-t6:eth1"]
+
+    - endpoints: ["agg-t2:eth2", "tor-t7:eth1"]
+    - endpoints: ["agg-t2:eth3", "tor-t8:eth1"]
+    - endpoints: ["agg-t2:eth4", "tor-t9:eth1"]
+    - endpoints: ["agg-t2:eth5", "tor-t10:eth1"]
+    - endpoints: ["agg-t2:eth6", "tor-t11:eth1"]
+    - endpoints: ["agg-t2:eth7", "tor-t12:eth1"]
+
+    - endpoints: ["agg-t3:eth2", "tor-t13:eth1"]
+    - endpoints: ["agg-t3:eth3", "tor-t14:eth1"]
+    - endpoints: ["agg-t3:eth4", "tor-t15:eth1"]
+    - endpoints: ["agg-t3:eth5", "tor-t16:eth1"]
+    - endpoints: ["agg-t3:eth6", "tor-t17:eth1"]
+    - endpoints: ["agg-t3:eth7", "tor-t18:eth1"]
