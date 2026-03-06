@@ -168,6 +168,6 @@ topology:
     - endpoints: ["agg-c3:eth6", "tor-c17:eth1"]
     - endpoints: ["agg-c3:eth7", "tor-c18:eth1"]
 
-  hooks:
-    post-deploy:
-      - exec: "./scripts/init-c.sh"
+hooks:
+   post-deploy:
+     - exec: "./scripts/init-c.sh"
