@@ -1,0 +1,14 @@
+name: vm-a-core
+
+topology:
+  nodes:
+    core-a:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ../frr/core-a/core1.conf:/etc/frr/frr.conf
+        - ../frr/core-a/daemons:/etc/frr/daemons
+
+  links:
+    - endpoints: ["core-a:eth1", "enp0s8"]   # A ↔ C (VBoxNet1)
+    - endpoints: ["core-a:eth2", "enp0s9"]   # A ↔ T (VBoxNet2)
