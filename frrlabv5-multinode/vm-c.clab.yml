@@ -1,5 +1,5 @@
 name: vm-c-lab
-version: 2
+
 topology:
   nodes:
     core-c:
