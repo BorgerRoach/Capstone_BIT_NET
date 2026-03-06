@@ -1,174 +1,173 @@
 name: vm-c-lab
+version: 2
+topology:
+  nodes:
+    core-c:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/core-c/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-c/daemons:/etc/frr/daemons
 
-lab:
-  topology:
-    nodes:
-      core-c:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/core-c/core1.conf:/etc/frr/frr.conf
-          - ./frr/core-c/daemons:/etc/frr/daemons
+    agg-c1:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/agg-c/agg1.conf:/etc/frr/frr.conf
+        - ./frr/agg-c/daemons:/etc/frr/daemons
 
-      agg-c1:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/agg-c/agg1.conf:/etc/frr/frr.conf
-          - ./frr/agg-c/daemons:/etc/frr/daemons
+    agg-c2:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/agg-c/agg2.conf:/etc/frr/frr.conf
+        - ./frr/agg-c/daemons:/etc/frr/daemons
 
-      agg-c2:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/agg-c/agg2.conf:/etc/frr/frr.conf
-          - ./frr/agg-c/daemons:/etc/frr/daemons
+    agg-c3:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/agg-c/agg3.conf:/etc/frr/frr.conf
+        - ./frr/agg-c/daemons:/etc/frr/daemons
 
-      agg-c3:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/agg-c/agg3.conf:/etc/frr/frr.conf
-          - ./frr/agg-c/daemons:/etc/frr/daemons
+    # --- TOR C1–C18 ---
+    tor-c1:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor1.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c2:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor2.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c3:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor3.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c4:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor4.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c5:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor5.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c6:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor6.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
 
-      # --- TOR C1–C18 ---
-      tor-c1:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor1.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c2:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor2.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c3:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor3.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c4:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor4.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c5:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor5.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c6:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor6.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c7:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor7.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c8:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor8.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c9:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor9.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c10:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor10.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c11:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor11.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c12:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor12.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
 
-      tor-c7:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor7.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c8:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor8.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c9:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor9.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c10:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor10.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c11:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor11.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c12:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor12.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c13:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor13.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c14:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor14.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c15:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor15.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c16:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor16.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c17:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor17.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
+    tor-c18:
+      kind: linux
+      image: frrouting/frr
+      binds:
+        - ./frr/tor-c/tor18.conf:/etc/frr/frr.conf
+        - ./frr/tor-c/daemons:/etc/frr/daemons
 
-      tor-c13:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor13.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c14:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor14.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c15:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor15.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c16:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor16.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c17:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor17.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
-      tor-c18:
-        kind: linux
-        image: frrouting/frr
-        binds:
-          - ./frr/tor-c/tor18.conf:/etc/frr/frr.conf
-          - ./frr/tor-c/daemons:/etc/frr/daemons
+  links:
+    - endpoints: ["core-c:eth1", "agg-c1:eth1"]
+    - endpoints: ["core-c:eth2", "agg-c2:eth1"]
+    - endpoints: ["core-c:eth3", "agg-c3:eth1"]
 
-    links:
-      - endpoints: ["core-c:eth1", "agg-c1:eth1"]
-      - endpoints: ["core-c:eth2", "agg-c2:eth1"]
-      - endpoints: ["core-c:eth3", "agg-c3:eth1"]
+    - endpoints: ["agg-c1:eth2", "tor-c1:eth1"]
+    - endpoints: ["agg-c1:eth3", "tor-c2:eth1"]
+    - endpoints: ["agg-c1:eth4", "tor-c3:eth1"]
+    - endpoints: ["agg-c1:eth5", "tor-c4:eth1"]
+    - endpoints: ["agg-c1:eth6", "tor-c5:eth1"]
+    - endpoints: ["agg-c1:eth7", "tor-c6:eth1"]
 
-      - endpoints: ["agg-c1:eth2", "tor-c1:eth1"]
-      - endpoints: ["agg-c1:eth3", "tor-c2:eth1"]
-      - endpoints: ["agg-c1:eth4", "tor-c3:eth1"]
-      - endpoints: ["agg-c1:eth5", "tor-c4:eth1"]
-      - endpoints: ["agg-c1:eth6", "tor-c5:eth1"]
-      - endpoints: ["agg-c1:eth7", "tor-c6:eth1"]
+    - endpoints: ["agg-c2:eth2", "tor-c7:eth1"]
+    - endpoints: ["agg-c2:eth3", "tor-c8:eth1"]
+    - endpoints: ["agg-c2:eth4", "tor-c9:eth1"]
+    - endpoints: ["agg-c2:eth5", "tor-c10:eth1"]
+    - endpoints: ["agg-c2:eth6", "tor-c11:eth1"]
+    - endpoints: ["agg-c2:eth7", "tor-c12:eth1"]
 
-      - endpoints: ["agg-c2:eth2", "tor-c7:eth1"]
-      - endpoints: ["agg-c2:eth3", "tor-c8:eth1"]
-      - endpoints: ["agg-c2:eth4", "tor-c9:eth1"]
-      - endpoints: ["agg-c2:eth5", "tor-c10:eth1"]
-      - endpoints: ["agg-c2:eth6", "tor-c11:eth1"]
-      - endpoints: ["agg-c2:eth7", "tor-c12:eth1"]
+    - endpoints: ["agg-c3:eth2", "tor-c13:eth1"]
+    - endpoints: ["agg-c3:eth3", "tor-c14:eth1"]
+    - endpoints: ["agg-c3:eth4", "tor-c15:eth1"]
+    - endpoints: ["agg-c3:eth5", "tor-c16:eth1"]
+    - endpoints: ["agg-c3:eth6", "tor-c17:eth1"]
+    - endpoints: ["agg-c3:eth7", "tor-c18:eth1"]
 
-      - endpoints: ["agg-c3:eth2", "tor-c13:eth1"]
-      - endpoints: ["agg-c3:eth3", "tor-c14:eth1"]
-      - endpoints: ["agg-c3:eth4", "tor-c15:eth1"]
-      - endpoints: ["agg-c3:eth5", "tor-c16:eth1"]
-      - endpoints: ["agg-c3:eth6", "tor-c17:eth1"]
-      - endpoints: ["agg-c3:eth7", "tor-c18:eth1"]
-
-  hooks:
-    post-deploy:
-      - exec: "./scripts/init-c.sh"
+hooks:
+  post-deploy:
+    - exec: "./scripts/init-c.sh"
