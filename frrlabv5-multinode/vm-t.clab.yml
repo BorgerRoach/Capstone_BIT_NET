@@ -186,7 +186,3 @@ topology:
     - endpoints: ["agg-t3:eth5", "tor-t16:eth1"]
     - endpoints: ["agg-t3:eth6", "tor-t17:eth1"]
     - endpoints: ["agg-t3:eth7", "tor-t18:eth1"]
-
-hooks:
-  post-deploy:
-  - exec: "./scripts/init-t.sh"
