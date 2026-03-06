@@ -33,10 +33,10 @@ sudo nsenter -t $PID -n ip link set vxlan-ct up
 
 # Assign IPs directly to VxLAN interfaces
 # C → A
-sudo nsenter -t $PID -n ip addr add 10.0.2.1/31 dev vxlan-ca
+sudo nsenter -t $PID -n ip addr add 10.0.1.1/31 dev vxlan-ca
 
 # C → T
-sudo nsenter -t $PID -n ip addr add 10.0.1.1/31 dev vxlan-ct
+sudo nsenter -t $PID -n ip addr add 10.0.3.0/31 dev vxlan-ct
 
 # Loopback (must match FRR core-c)
 sudo nsenter -t $PID -n ip addr add 10.255.0.21/32 dev lo

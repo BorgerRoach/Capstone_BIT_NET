@@ -26,10 +26,10 @@ sudo nsenter -t $PID -n ip link set vxlan-tc up
 sudo nsenter -t $PID -n ip link set vxlan-ta up
 
 # T → C  (matches C: 10.0.1.1/31)
-sudo nsenter -t $PID -n ip addr add 10.0.1.0/31 dev vxlan-tc
+sudo nsenter -t $PID -n ip addr add 10.0.3.1/31 dev vxlan-tc
 
 # T → A  (matches A: 10.0.3.0/31)
-sudo nsenter -t $PID -n ip addr add 10.0.3.1/31 dev vxlan-ta
+sudo nsenter -t $PID -n ip addr add 10.0.2.1/31 dev vxlan-ta
 
 # Loopback (must match FRR core-t)
 sudo nsenter -t $PID -n ip addr add 10.255.0.41/32 dev lo

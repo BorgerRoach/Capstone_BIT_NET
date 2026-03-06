@@ -8,8 +8,7 @@ sudo ip link del vxlan-at 2>/dev/null
 sudo containerlab deploy -t ./vm-a.clab.yml || true
 
 # Get CORE-A PID
-CONTAINER="clab-vm-a-lab-core-a"
-PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER)
+PID=$(docker inspect -f '{{.State.Pid}}' clab-vm-a-lab-core-a)
 
 echo "Core-A PID: $PID"
 
@@ -33,10 +32,10 @@ sudo nsenter -t $PID -n ip link set vxlan-at up
 
 # Assign IPs directly to VxLAN interfaces
 # A → C
-sudo nsenter -t $PID -n ip addr add 10.0.2.0/31 dev vxlan-ac
+sudo nsenter -t $PID -n ip addr add 10.0.1.0/31 dev vxlan-ac
 
 # A → T
-sudo nsenter -t $PID -n ip addr add 10.0.3.0/31 dev vxlan-at
+sudo nsenter -t $PID -n ip addr add 10.0.2.0/31 dev vxlan-at
 
 # Loopback (must match FRR core-a)
 sudo nsenter -t $PID -n ip addr add 10.255.0.1/32 dev lo
