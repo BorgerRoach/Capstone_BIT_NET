@@ -1,15 +1,12 @@
 #!/bin/bash
+set -e
 
 # Clean old tunnels
-sudo ip link del vxlan-ac 2>/dev/null
-sudo ip link del vxlan-at 2>/dev/null
+sudo ip link del vxlan-ac 2>/dev/null || true
+sudo ip link del vxlan-at 2>/dev/null || true
 
-# Deploy VM-A topology
-sudo containerlab deploy -t ./vm-a.clab.yml || true
-
-# Get CORE-A PID
+# Get CORE-A PID (container name from topology)
 PID=$(docker inspect -f '{{.State.Pid}}' clab-vm-a-lab-core-a)
-
 echo "Core-A PID: $PID"
 
 # A → C (VM-C = 192.168.56.20)
@@ -23,19 +20,22 @@ sudo ip link set vxlan-ac up
 sudo ip link set vxlan-at up
 
 # Move into CORE-A namespace
-sudo ip link set vxlan-ac netns $PID
-sudo ip link set vxlan-at netns $PID
+sudo ip link set vxlan-ac netns "$PID"
+sudo ip link set vxlan-at netns "$PID"
 
 # Bring up inside CORE-A
-sudo nsenter -t $PID -n ip link set vxlan-ac up
-sudo nsenter -t $PID -n ip link set vxlan-at up
+sudo nsenter -t "$PID" -n ip link set vxlan-ac up
+sudo nsenter -t "$PID" -n ip link set vxlan-at up
 
 # Assign IPs directly to VxLAN interfaces
-# A → C
-sudo nsenter -t $PID -n ip addr add 10.0.1.0/31 dev vxlan-ac
+# A ↔ C uses 10.0.1.0/31 (A=10.0.1.0, C=10.0.1.1)
+sudo nsenter -t "$PID" -n ip addr add 10.0.1.0/31 dev vxlan-ac
 
-# A → T
-sudo nsenter -t $PID -n ip addr add 10.0.2.0/31 dev vxlan-at
+# A ↔ T uses 10.0.2.0/31 (A=10.0.2.0, T=10.0.2.1)
+sudo nsenter -t "$PID" -n ip addr add 10.0.2.0/31 dev vxlan-at
 
 # Loopback (must match FRR core-a)
-sudo nsenter -t $PID -n ip addr add 10.255.0.1/32 dev lo
+sudo nsenter -t "$PID" -n ip addr add 10.255.0.1/32 dev lo || true
+
+# Restart FRR so it re-reads interfaces and OSPF binds to them
+sudo nsenter -t "$PID" -n systemctl restart frr || sudo nsenter -t "$PID" -n /usr/lib/frr/frrinit.sh restart
