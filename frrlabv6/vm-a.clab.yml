@@ -10,5 +10,5 @@ topology:
         - ../frr/core-a/daemons:/etc/frr/daemons
 
   links:
-    - endpoints: ["core-a:eth1", "enp0s8"]   # A ↔ C (VBoxNet1)
-    - endpoints: ["core-a:eth2", "enp0s9"]   # A ↔ T (VBoxNet2)
+    - endpoints: ["core-t:eth1", "br-ac"]
+    - endpoints: ["core-t:eth2", "br-at"]
