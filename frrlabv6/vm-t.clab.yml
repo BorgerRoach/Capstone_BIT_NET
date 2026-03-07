@@ -8,6 +8,10 @@ topology:
       binds:
         - ../frr/core-t/core1.conf:/etc/frr/frr.conf
         - ../frr/core-t/daemons:/etc/frr/daemons
+      interfaces:
+        - host-interface: br-ta   # T ↔ A (VBoxNet2)
+        - host-interface: br-tc   # T ↔ C (VBoxNet3)
+
 
   links:
     - endpoints: ["core-t:eth1", "br-ta"]
