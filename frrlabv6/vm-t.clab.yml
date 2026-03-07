@@ -6,8 +6,8 @@ topology:
       kind: linux
       image: frrouting/frr
       binds:
-        - ../frr/core-t/core1.conf:/etc/frr/frr.conf
-        - ../frr/core-t/daemons:/etc/frr/daemons
+        - ./frr/core-t/core1.conf:/etc/frr/frr.conf
+        - ./frr/core-t/daemons:/etc/frr/daemons
 
     host:
       kind: host
