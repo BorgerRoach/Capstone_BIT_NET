@@ -12,7 +12,3 @@ topology:
         - host-interface: br-ac   # A ↔ C (VBoxNet1)
         - host-interface: br-at   # A ↔ T (VBoxNet2)
 
-
-  links:
-    - endpoints: ["core-t:eth1", "br-ac"]
-    - endpoints: ["core-t:eth2", "br-at"]

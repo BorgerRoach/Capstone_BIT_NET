@@ -13,6 +13,4 @@ topology:
         - host-interface: br-ct   # C ↔ T (VBoxNet3)
 
 
-  links:
-    - endpoints: ["core-t:eth1", "br-ca"]
-    - endpoints: ["core-t:eth2", "br-ct"]
+ 
